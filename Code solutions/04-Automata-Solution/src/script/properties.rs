@@ -72,12 +72,14 @@ property starting Start {
 // P4
 // cannot make it cleaner as only "foreach target" is supported
 property starting Start {
-  Start >>> *.ADMIN_approveOpenAccount(Integer uid, String account_number) 
-             | -> { Verification.approvedAccounts.add(account_number); } 
-        >>> Start 
+
   Start >>> *.ADMIN_approveOpenAccount(Integer uid, String account_number)
              |  Verification.approvedAccounts.contains(account_number) 
         >>> Bad [P4 violated]
+
+  Start >>> *.ADMIN_approveOpenAccount(Integer uid, String account_number) 
+             | -> { Verification.approvedAccounts.add(account_number); } 
+        >>> Start 
 }
 
 // P5

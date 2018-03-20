@@ -2,17 +2,8 @@ package transactionsystem;
 
 public aspect Properties {
 
-    before (): call(* *.initialise())
-    {
-    	Verification.event_initialise();
-    }
-    
-    before (): call(* UserInfo.openSession())
-    {
-    	Verification.event_openSession();
-    }
-
-    before (): call(* *.makeGoldUser()) 
+	
+	before (): call(* *.makeGoldUser()) 
     {
     	UserInfo u = (UserInfo)(thisJoinPoint.getTarget());
     	Verification.assertion(
@@ -20,7 +11,25 @@ public aspect Properties {
     		"P1 violated"
     	); 
     }
+	
+    before (): call(* *.initialise())
+    {
+    		Verification.event_initialise();
+    }
+    
+    before (): call(* UserInfo.openSession())
+    {
+    		Verification.event_openSession();
+    }
 
+   
+    
+    after (): call(* *.withdraw(..)) || call(* *.deposit(..))
+    {
+    	UserAccount a = (UserAccount)(thisJoinPoint.getTarget());
+    	
+    	Verification.assertion(a.getBalance() >= 0, "P3 violated");
+    }
     
     before (): call(* *.activateAccount())
     {
@@ -31,13 +40,6 @@ public aspect Properties {
     		"P4 violated");
 
     	Verification.approvedAccounts.add(a.getAccountNumber());
-    }
-    
-    after (): call(* *.withdraw(..)) || call(* *.deposit(..))
-    {
-    	UserAccount a = (UserAccount)(thisJoinPoint.getTarget());
-    	
-    	Verification.assertion(a.getBalance() >= 0, "P3 violated");
     }
 
     before (): call(* UserInfo.makeDisabled(..)) 

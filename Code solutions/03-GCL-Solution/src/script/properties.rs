@@ -57,11 +57,11 @@ UserInfo.openSession(..) | !Verification.initialised -> { Verification.fail("P2 
 *.deposit(..) target (UserAccount a) | a.getBalance() < 0 -> { Verification.fail("P3 violated"); }
 
 // P4
-*.ADMIN_approveOpenAccount(Integer uid, String account_number) 
-  | -> { Verification.approvedAccounts.add(account_number); }
 *.ADMIN_approveOpenAccount(Integer uid, String account_number)
   |  Verification.approvedAccounts.contains(account_number) 
   -> { Verification.fail("P4 violated"); }
+*.ADMIN_approveOpenAccount(Integer uid, String account_number) 
+  | -> { Verification.approvedAccounts.add(account_number); }
 
 // P5
 UserInfo.makeDisabled(..) target (UserInfo u) | -> { Verification.disabledUsers.add(u); }

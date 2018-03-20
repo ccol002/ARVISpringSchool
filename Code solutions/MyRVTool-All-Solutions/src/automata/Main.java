@@ -10,17 +10,17 @@ public class Main {
 	
 	public static void main(String [] args) 
 	{
-		String userPath = "/Users/christiancolombo/Dropbox/repositories/RV-course-repository/";
+		String userPath = "/Users/christiancolombo/Uni Drive/repositories";
 				
 		//Gordon
 		//	"/Users/gordonpace/Documents/Dropbox/Data/Current Work/> Papers/InProgress/Book-RV/";
 		
-		String coursePath = "Courses/02 UoM Full Course";
+		String coursePath = "/ARVISpringSchool";
 		
 		//Gordon
 		//  "Buenos-Aires-Course/";
 		
-		String topicPath = "/Code/Solutions/FinancialTransactions-04-Automata-Solution";
+		String topicPath = "/Code solutions/04-Automata-Solution";
 		
 		//Gordon
 		//  "/Code/FiTS/Code/FinancialTransactions-03-GCL-Solution";

@@ -27,12 +27,12 @@ before (UserAccount a): call(* *.deposit(..)) &&
   }
 
 before (Integer uid, String account_number): call(* *.ADMIN_approveOpenAccount(..)) &&
-    args(uid, account_number){ Verification.approvedAccounts.add(account_number); }
-
-before (Integer uid, String account_number): call(* *.ADMIN_approveOpenAccount(..)) &&
     args(uid, account_number) {
     if (Verification.approvedAccounts.contains(account_number)) { Verification.fail("P4 violated"); }
   }
+
+before (Integer uid, String account_number): call(* *.ADMIN_approveOpenAccount(..)) &&
+    args(uid, account_number){ Verification.approvedAccounts.add(account_number); }
 
 before (UserInfo u): call(* UserInfo.makeDisabled(..)) &&
     target(u){ Verification.disabledUsers.add(u); }

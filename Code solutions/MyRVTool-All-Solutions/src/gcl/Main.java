@@ -8,16 +8,17 @@ import java.io.IOException;
 public class Main {
 	public static void main(String [] args) 
 	{
+		String path = "/Users/christiancolombo/Uni Drive/repositories/ARVISpringSchool/Code solutions/03-GCL-Solution/src";
 		try {
-			GCLScript script = new GCLScript("/Users/gordonpace/Documents/Dropbox/Data/Current Work/> Papers/InProgress/Book-RV/Buenos-Aires-Course/Code/FiTS/Code/FinancialTransactions-03-GCL-Solution/src/properties.rs");
+			GCLScript script = new GCLScript(path + "/script/properties.rs");
 			try {
-		          File file_java = new File("/Users/gordonpace/Documents/Dropbox/Data/Current Work/> Papers/InProgress/Book-RV/Buenos-Aires-Course/Code/FiTS/Code/FinancialTransactions-03-GCL-Solution/src/transactionsystem/Verification.java");;
+		          File file_java = new File(path + "/transactionsystem/Verification.java");
 		      
 		          BufferedWriter output = new BufferedWriter(new FileWriter(file_java));
 		          output.write(script.getAuxiliaryCode());
 		          output.close();
 
-		          File file_aj = new File("/Users/gordonpace/Documents/Dropbox/Data/Current Work/> Papers/InProgress/Book-RV/Buenos-Aires-Course/Code/FiTS/Code/FinancialTransactions-03-GCL-Solution/src/transactionsystem/Properties.aj");
+		          File file_aj = new File(path + "/transactionsystem/Properties.aj");
 		          output = new BufferedWriter(new FileWriter(file_aj));
   		  		  output.write(script.toAspectJ());
 		          output.close();
